@@ -24,7 +24,7 @@ class CTU_Partition:
         self.chroma_par = os.path.join(self.dir_name,
                                       f'{self.file_idx}_chroma_CTU.txt')
         self.fwidth, self.fheight = self.size
-        self.img = yuvio.imread(file, self.fwidth, self.fheight, 'yuv420p10le')
+        self.img = yuvio.imread(file_path, self.fwidth, self.fheight, 'yuv420p10le')
     
     def show_partition(self, comp:str):
         comp = comp.lower()
@@ -101,7 +101,7 @@ class CTU_Partition:
                                             end_point, color, thickness)
         # cv2.imshow(title, frame_partition)
         # cv2.waitKey()
-        return title, frame_partition
+        return frame_partition
     
     def save_img(self, title:str, img: np.array):
         cv2.imwrite(title, img)
@@ -111,7 +111,7 @@ if __name__ == "__main__":
     file = '/home/woody/dataset/training_data/DIV2K_QP32_nDBF/0001_reco.yuv'
     partiton = CTU_Partition(file, size=(2040, 1404))
     # partiton.show_partition('u')
-    title, map = partiton.get_partition_map('v')
+    map = partiton.get_partition_map('v')
     partiton.save_img(title, map)
 
     # partiton.save_partition_map('y')
