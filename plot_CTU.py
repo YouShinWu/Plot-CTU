@@ -110,10 +110,8 @@ class CTU_Partition:
 if __name__ == "__main__":
     file = '/home/woody/dataset/training_data/DIV2K_QP32_nDBF/0001_reco.yuv'
     partiton = CTU_Partition(file, size=(2040, 1404))
+    # partiton.show_partition('u')
     title, map = partiton.get_partition_map('v')
-    # print(map)
-    img = Image.open('0001_chroma_CTU.png')
-    print(np.array(img))
-    # partiton.save_img(title, map)
+    partiton.save_img(title, map)
 
     # partiton.save_partition_map('y')
