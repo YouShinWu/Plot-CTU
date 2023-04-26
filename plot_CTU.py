@@ -81,10 +81,11 @@ class CTU_Partition:
             title = os.path.join(self.dist,f'{self.file_idx}_luma_CTU.png')
         if comp in ['u','v']:
             img = self.img.u
+            print(img.shape)
             fwidth, fheight = img.shape[1],img.shape[0]
             frame_partition = np.ones((fheight,fwidth)) * 128
             ctu_num = math.ceil(fwidth/128) * math.ceil(fheight/128)
-            ctu_map = self.luma_par
+            ctu_map = self.chroma_par
             title = os.path.join(self.dist,f'{self.file_idx}_chroma_CTU.png')
         f = open(ctu_map, "r")
         for line in f:
@@ -108,10 +109,10 @@ class CTU_Partition:
         print(f'Save img {title} finished')
     
 if __name__ == "__main__":
-    file = '/home/woody/dataset/training_data/DIV2K_QP32_nDBF/0001_reco.yuv'
+    file = '/home/woody/dataset/training_data/DIV2K_QP32_nDBF/0003_reco.yuv'
     partiton = CTU_Partition(file, size=(2040, 1404))
-    # partiton.show_partition('u')
-    map = partiton.get_partition_map('v')
-    partiton.save_img(title, map)
+    partiton.show_partition('u')
+    # map = partiton.get_partition_map('v')
+    # partiton.save_img(title, map)
 
     # partiton.save_partition_map('y')

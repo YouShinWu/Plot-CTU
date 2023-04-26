@@ -23,6 +23,7 @@ path = '/home/woody/dataset/training_data/DIV2K_QP32_nDBF'
 
 origin_path = '/home/woody/dataset/DIV2K_train_HR'
 files = get_all_yuv_files(path)
+# files = ['0003_reco.yuv']
 for file in files:
     name = file.split('.')[0]
     name = name.split('_')[0]
@@ -30,14 +31,16 @@ for file in files:
     size = get_yuv_image_width_hight(origin_path, file_name)
     img = os.path.join(path, file)
     partition = CTU_Partition(img, size)
-    luma_map = partition.get_partition_map('y')
+    # partition.show_partition('u')
+    # luma_map = partition.get_partition_map('y')
     chroma_map = partition.get_partition_map('u')
-    luma_title = f'{name}_luma_CTU.png'
-    luma = os.path.join(path,luma_title)
-    partition.save_img(luma, luma_map)
-    print(f'Save img {luma}')
+    # luma_title = f'{name}_luma_CTU.png'
+    # luma = os.path.join(path,luma_title)
+    # partition.save_img(luma, luma_map)
+    # print(f'Save img {luma}')
     chroma_title = f'{name}_chroma_CTU.png'
     chroma = os.path.join(path,chroma_title)
+    # print(chroma)
     partition.save_img(chroma, chroma_map)
     print(f'Save img {chroma}')
 # print(files)
